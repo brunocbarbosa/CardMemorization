@@ -4,7 +4,7 @@ import connection from '../database/databaseConnection';
 class DeckController{
   async index(req: Request, res: Response){
 
-    await connection.query('SELECT * FROM deck', (err, data) => {
+    await connection.query('SELECT * FROM decks', (err, data) => {
       if(err) return res.json(err);
 
       return res.json(data);
@@ -14,7 +14,7 @@ class DeckController{
   async save(req: Request, res: Response){
     const data = req.body;
     
-    await connection.query(`INSERT INTO deck set ?`, data, (err, result) => {
+    await connection.query(`INSERT INTO decks SET ?`, data, (err, result) => {
       if(err) return res.json(err);
 
       return res.json({ message: "Deck created!!" });
@@ -24,9 +24,8 @@ class DeckController{
   async update(req: Request, res: Response){
     const { id } = req.params;
     const data = req.body
-    console.log(id, data)
-
-    await connection.query('UPDATE deck SET ? WHERE id = ?', [data, id], (err, result) => {
+  
+    await connection.query('UPDATE decks SET ? WHERE id = ?', [data, id], (err, result) => {
       if(err) return res.json(err);
 
       return res.json({ message: "Deck updated!" });
