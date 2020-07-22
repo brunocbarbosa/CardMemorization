@@ -18,7 +18,7 @@ routes.post('/user', userController.create);
 routes.put('/user/:id', userController.update);
 
 //deck routes
-routes.get('/deck', deckController.index);
+routes.get('/deck/:id', deckController.index);
 routes.post('/deck', deckController.save);
 routes.put('/deck/:id', deckController.update);
 

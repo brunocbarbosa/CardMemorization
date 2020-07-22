@@ -3,8 +3,10 @@ import connection from '../database/databaseConnection';
 
 class DeckController{
   async index(req: Request, res: Response){
+    const { id } = req.params;
 
-    await connection.query('SELECT * FROM decks', (err, data) => {
+    await connection.query('SELECT name FROM decks '+
+                            'WHERE user_id = ?', id, (err, data) => {
       if(err) return res.json(err);
 
       return res.json(data);
